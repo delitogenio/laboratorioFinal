@@ -6,6 +6,7 @@ import com.abc.CRUDS.repository.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -64,5 +65,15 @@ public class UserService implements IUserService {
             repository.delete(user);
             return true;
         }).orElse(false);
+    }
+
+    @Override
+    public Optional<User> findByEmail(String email) {
+        return repository.findByEmail(email);
+    }
+
+    @Override
+    public Optional<List<User>> findByCumpleanos(Date from, Date to) {
+        return repository.findByCumpleanosBetween(from,to);
     }
 }
